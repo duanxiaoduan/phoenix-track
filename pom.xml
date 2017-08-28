@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.ginkgocap.ywxt.track</groupId>
+	<artifactId>phoenix-track</artifactId>
+	<packaging>pom</packaging>
+	<name>${project.artifactId}</name>
+	<version>1.0.0</version>
+	<modules>
+		<module>phoenix-track-entity</module>
+        <module>phoenix-track-web</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<eclipse.useProjectReferences>false</eclipse.useProjectReferences>
+		<skip_maven_deploy>false</skip_maven_deploy>
+		<maven.test.skip>true</maven.test.skip>
+
+		<spring.version>3.0.7.RELEASE</spring.version>
+		<spring.integration.version>2.1.3.RELEASE</spring.integration.version>
+		<mongo.java.version>2.12.2</mongo.java.version>
+		<!-- database -->
+		<!-- Specify the target database to operate on, as a value of the Database
+            enum: DB2, HSQL, INFORMIX, MYSQL, ORACLE, POSTGRESQL, SQL_SERVER, SYBASE -->
+		<database>MYSQL</database>
+		<jdbc.groupId>mysql</jdbc.groupId>
+		<jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
+		<jdbc.version>5.1.12</jdbc.version>
+		<jdbc.driverClassName>
+			com.mysql.jdbc.Driver
+		</jdbc.driverClassName>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java-version>1.7</java-version>
+		<javax.servlet.version>2.5</javax.servlet.version>
+		<org.apache.commons-lang3.version>3.6</org.apache.commons-lang3.version>
+		<com.google.guava.version>18.0</com.google.guava.version>
+
+		<org.springframework.boot.version>1.5.6.RELEASE</org.springframework.boot.version>
+		<org.apache.kafka.version>0.9.0.1</org.apache.kafka.version>
+		<org.slf4j.version>1.7.25</org.slf4j.version>
+		<joda-time.version>2.7</joda-time.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<!--&lt;!&ndash; test插件, 增大内存且仅测试名称为*Test的类 &ndash;&gt;
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.10</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.surefire</groupId>
+						<artifactId>surefire-junit47</artifactId>
+						<version>2.11</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<skipTests>true</skipTests>
+					<testFailureIgnore>true</testFailureIgnore>
+					<argLine>-Xmx512M</argLine>
+					<useSystemClassLoader>true</useSystemClassLoader>
+				</configuration>
+			</plugin>-->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<skip>${skip_maven_deploy}</skip>
+					<updateReleaseInfo>true</updateReleaseInfo>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<repositories>
+		<!-- 如有Nexus私服, 取消注释并指向正确的服务器地址. -->
+		<repository>
+			<id>nexus</id>
+			<name>Team Nexus Repository</name>
+			<url>http://192.168.101.89:8081/nexus/content/groups/public</url>
+		</repository>
+	</repositories>
+	<scm>
+		<connection>scm:git:ssh://git@192.168.101.89/phoenix-track.git</connection>
+		<url>scm:git:ssh://git@192.168.101.89/phoenix-track.git</url>
+		<developerConnection>scm:git:ssh://git@192.168.101.89/phoenix-track.git</developerConnection>
+	</scm>
+
+</project>

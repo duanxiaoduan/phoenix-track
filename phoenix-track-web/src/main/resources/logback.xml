@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="5 seconds" debug="false">
+
+    <!--打印logback初始化日志系统信息，debug="true"是同等效果-->
+    <!--<statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>-->
+
+    <property name="logPath" value="/home/logs/track-web"/>
+    <property name="maxHistory" value="1"/>
+    <property name="charset" value="UTF-8"/>
+
+    <appender name="rootConsoleDebug" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="rootConsoleError" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>error</level>
+        </filter>
+    </appender>
+
+    <!--配置所有类SQL的日志-->
+    <appender name="rootRollingDebug" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logPath}/root.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logPath}/root.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</pattern>
+            <charset>${charset}</charset>
+        </encoder>
+    </appender>
+
+    <!--
+    -把bimt的所有日志和其他错误级别的日志输出到console
+    -把所有的日志输出到rootRollingDebug
+    -->
+
+    <root level="error">
+        <appender-ref ref="rootRollingDebug"/>
+        <appender-ref ref="rootConsoleDebug"/>
+    </root>
+
+    <logger name="com.ginkgocap.ywxt.track.web" level="debug"/>
+    <logger name="org.springframework" level="debug"/>
+
+    <logger name="jdbc" level="OFF"/>
+    <logger name="jdbc.sqlonly" level="debug"/>
+
+    <!--Access日志-->
+    <appender name="accessLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logPath}/access.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logPath}/access/%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} - %msg%n</pattern>
+            <charset>${charset}</charset>
+        </encoder>
+    </appender>
+
+    <logger name="accessLog" level="info">
+        <appender-ref ref="accessLogAppender" />
+    </logger>
+
+</configuration>
