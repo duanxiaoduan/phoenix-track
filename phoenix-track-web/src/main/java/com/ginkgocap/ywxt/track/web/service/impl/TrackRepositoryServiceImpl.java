@@ -5,6 +5,7 @@ import com.ginkgocap.ywxt.track.web.model.vo.TbBusinessTrackVO;
 import com.ginkgocap.ywxt.track.web.repository.TrackRepository;
 import com.ginkgocap.ywxt.track.web.service.TrackRepositoryService;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -14,7 +15,7 @@ import java.util.List;
 /**
  * Created by gintong on 2017/8/23.
  */
-@Component
+@Service("TrackRepositoryService")
 @Transactional(readOnly=true)
 public class TrackRepositoryServiceImpl extends BaseServiceImpl implements TrackRepositoryService{
 

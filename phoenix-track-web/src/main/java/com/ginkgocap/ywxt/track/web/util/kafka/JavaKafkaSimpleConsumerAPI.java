@@ -1,6 +1,9 @@
 package com.ginkgocap.ywxt.track.web.util.kafka;
 
-import com.ginkgocap.ywxt.track.web.controller.BusinessController;
+import com.alibaba.fastjson.JSON;
+import com.ginkgocap.ywxt.track.web.model.TbBusinessTrack;
+import com.ginkgocap.ywxt.track.web.service.TrackRepositoryService;
+import com.ginkgocap.ywxt.track.web.util.SpringContextUtils;
 import com.ginkgocap.ywxt.track.web.util.kafka.bean.KafkaBrokerInfo;
 import com.ginkgocap.ywxt.track.web.util.kafka.bean.KafkaTopicPartitionInfo;
 import kafka.api.FetchRequest;
@@ -20,7 +23,7 @@ import java.util.*;
 /**
  * Kafka Lower consumer api ==> Kafka Simple Consumer API
  */
-public class JavaKafkaSimpleConsumerAPI {
+public class JavaKafkaSimpleConsumerAPI{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JavaKafkaSimpleConsumerAPI.class);
 
@@ -30,6 +33,8 @@ public class JavaKafkaSimpleConsumerAPI {
     private long retryIntervalMillis = 1000;
     // 缓存Topic/Partition对应的Broker连接信息
     private Map<KafkaTopicPartitionInfo, List<KafkaBrokerInfo>> replicaBrokers = new HashMap<KafkaTopicPartitionInfo, List<KafkaBrokerInfo>>();
+
+    static TrackRepositoryService trackRepositoryService = (TrackRepositoryService) SpringContextUtils.getBeanByClass("TrackRepositoryService");
 
     /**
      * 运行入口
@@ -142,8 +147,16 @@ public class JavaKafkaSimpleConsumerAPI {
                     String message = new String(bytes, "UTF-8");
                     int serverType = message.indexOf("serverType");
                     if( serverType > 0) {
-                        LOGGER.info("{} : {}", currentOffset, message.substring(serverType - 2, message.length()));
-                        // TODO: 2017/8/28 持久化到库里
+                        String substring = message.substring(serverType - 2, message.length());
+                        LOGGER.info("{} : {}", currentOffset, substring);
+                        try{
+                            TbBusinessTrack tbBusinessTrack = JSON.parseObject(substring, TbBusinessTrack.class);
+                            if(null != tbBusinessTrack) {
+                                trackRepositoryService.saveAndFlush(tbBusinessTrack);
+                            }
+                        } catch (Exception e) {
+                            LOGGER.error("{},{}", e.getStackTrace(), e);
+                        }
                     } else {
                         LOGGER.info("{} : {}", currentOffset, message);
                     }
@@ -414,7 +427,7 @@ public class JavaKafkaSimpleConsumerAPI {
         OffsetCommitRequest ocRequest = new OffsetCommitRequest(groupId, requestInfoMap, 0, clientName);
         // 提交修改偏移量的请求，并获取返回值
         LOGGER.info("updateOffset readOffSet : {}", readOffSet);
-        kafka.javaapi.OffsetCommitResponse response = consumer.commitOffsets(ocRequest);
+        OffsetCommitResponse response = consumer.commitOffsets(ocRequest);
 
         // 根据返回值进行不同的操作
         if (response.hasError()) {
@@ -579,6 +592,5 @@ public class JavaKafkaSimpleConsumerAPI {
         // 返回结果
         return new ArrayList<Integer>(partitionIDs);
     }
-
 
 }
