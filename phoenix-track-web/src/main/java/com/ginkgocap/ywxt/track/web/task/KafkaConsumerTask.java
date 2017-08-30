@@ -42,7 +42,6 @@ public class KafkaConsumerTask implements ApplicationListener<ContextRefreshedEv
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
         };
 

@@ -166,13 +166,14 @@ public class JavaKafkaSimpleConsumerAPI{
                 }
 
                 // 更新偏移量
+                LOGGER.info("updateOffset, topic: {}, partitionID: {}, readOffSet: {}, groupId={}, clientName: {}", topic, partitionID, readOffSet, groupId, clientName);
                 consumer = this.updateOffset(consumer, topic, partitionID,
                         readOffSet, groupId, clientName, 0);
 
-                // 如果没有读取数据，休眠一秒钟
+                // 如果没有读取数据，休眠三分钟
                 if (numRead == 0) {
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(3 * 60 * 1000);
                     } catch (Exception e) {
                         // nothings
                     }
@@ -426,7 +427,6 @@ public class JavaKafkaSimpleConsumerAPI{
         requestInfoMap.put(topicAndPartition, new OffsetAndMetadata(new OffsetMetadata(readOffSet, ""), new Date().getTime(), -1));
         OffsetCommitRequest ocRequest = new OffsetCommitRequest(groupId, requestInfoMap, 0, clientName);
         // 提交修改偏移量的请求，并获取返回值
-        LOGGER.info("updateOffset readOffSet : {}", readOffSet);
         OffsetCommitResponse response = consumer.commitOffsets(ocRequest);
 
         // 根据返回值进行不同的操作
