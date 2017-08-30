@@ -47,7 +47,7 @@
     </root>
 
     <logger name="com.ginkgocap.ywxt.track.web" level="debug"/>
-    <logger name="org.springframework" level="debug"/>
+    <logger name="org.springframework" level="info"/>
 
     <logger name="jdbc" level="OFF"/>
     <logger name="jdbc.sqlonly" level="debug"/>
