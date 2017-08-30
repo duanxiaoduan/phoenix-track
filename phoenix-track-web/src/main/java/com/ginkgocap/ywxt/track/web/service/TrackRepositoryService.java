@@ -17,5 +17,5 @@ public interface TrackRepositoryService {
 
     TbBusinessTrack saveAndFlush(TbBusinessTrack tbBusinessTrack);
 
-    List getBusinessTrackByDay(Timestamp start, Timestamp end, Integer businessModel);
+    List getBusinessTrackByDay(Timestamp start, Timestamp end, Integer businessModel, Integer optType);
 }

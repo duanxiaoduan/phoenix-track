@@ -53,12 +53,21 @@ public class BusinessController {
         return InterfaceResult.getInterfaceResultInstance(CommonResultCode.SYSTEM_EXCEPTION);
     }
 
-    @RequestMapping(value = "/day", method = RequestMethod.GET)
-    public InterfaceResult getBusinessTrackByDay() {
+    @RequestMapping(value = "/day/{businessModel}/{optType}/{year}/{month}", method = RequestMethod.GET)
+    public InterfaceResult getBusinessTrackByDay(
+            @PathVariable Integer businessModel,
+            @PathVariable Integer optType,
+            @PathVariable int year,
+            @PathVariable int month) {
         try {
-            long start = new DateTime(2017, 8, 1, 0, 0).getMillis();
-            long end = new DateTime(2017, 8, 31, 0, 0).getMillis();
-            List businessTrackByDay = trackRepositoryService.getBusinessTrackByDay(new Timestamp(start), new Timestamp(end), BusinessModelEnum.BUSINESS_VIDEO.getKey());
+            int year_ = year, month_ = month + 1;
+            if ( 12 == month) {
+                year_ += 1;
+                month_ = 1;
+            }
+            long start = new DateTime(year, month, 1, 0, 0).getMillis();
+            long end = new DateTime(year_, month_, 1, 0, 0).getMillis();
+            List businessTrackByDay = trackRepositoryService.getBusinessTrackByDay(new Timestamp(start), new Timestamp(end), businessModel, optType);
             LOGGER.info("businessTrack : {}", null == businessTrackByDay ? "null" : businessTrackByDay.toString());
             return InterfaceResult.getSuccessInterfaceResultInstance(businessTrackByDay);
         } catch (Exception e) {

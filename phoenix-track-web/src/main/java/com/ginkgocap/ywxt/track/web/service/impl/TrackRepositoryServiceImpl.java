@@ -35,7 +35,7 @@ public class TrackRepositoryServiceImpl extends BaseServiceImpl implements Track
         return trackRepository.saveAndFlush(tbBusinessTrack);
     }
 
-    public List getBusinessTrackByDay(Timestamp start, Timestamp end, Integer businessModel) {
-        return trackRepository.getBusinessTrackByDay(start, end, businessModel);
+    public List getBusinessTrackByDay(Timestamp start, Timestamp end, Integer businessModel, Integer optType) {
+        return trackRepository.getBusinessTrackByDay(start, end, businessModel, optType);
     }
 }

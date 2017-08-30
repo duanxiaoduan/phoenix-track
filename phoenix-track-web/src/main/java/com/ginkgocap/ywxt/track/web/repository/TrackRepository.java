@@ -18,8 +18,9 @@ public interface TrackRepository extends JpaRepository<TbBusinessTrack, Long> {
     @Query("select a from TbBusinessTrack a where a.id = ?1")
     TbBusinessTrack getOne(Long id);
 
-    @Query(value = "SELECT DATE_FORMAT(gmt_create,'%Y%m%d') days,count(id) count FROM tb_business_track WHERE  ?1 < gmt_create AND gmt_create < ?2 AND business_model = ?3 group by days", nativeQuery = true)
-    List getBusinessTrackByDay(Timestamp start, Timestamp end, Integer businessModel);
+    @Query(value = "SELECT DATE_FORMAT(gmt_create,'%Y%m%d') days,count(id) count FROM tb_business_track " +
+            "WHERE  ?1 < gmt_create AND gmt_create < ?2 AND business_model = ?3 AND opt_type = ?4 group by days", nativeQuery = true)
+    List getBusinessTrackByDay(Timestamp start, Timestamp end, Integer businessModel, Integer optType);
 
     TbBusinessTrack saveAndFlush(TbBusinessTrack tbBusinessTrack);
 
