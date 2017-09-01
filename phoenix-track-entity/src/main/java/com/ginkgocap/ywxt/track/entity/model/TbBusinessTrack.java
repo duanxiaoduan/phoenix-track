@@ -41,6 +41,11 @@ public class TbBusinessTrack implements Serializable{
     private Long userId;
 
     /**
+     * 用户 昵称
+     */
+    private String userName;
+
+    /**
      * 备注
      */
     private String remarks;
@@ -174,6 +179,14 @@ public class TbBusinessTrack implements Serializable{
      */
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     /**
