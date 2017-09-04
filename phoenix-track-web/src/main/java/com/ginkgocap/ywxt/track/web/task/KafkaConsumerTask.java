@@ -45,9 +45,11 @@ public class KafkaConsumerTask implements ApplicationListener<ContextRefreshedEv
             }
         };
 
-        // 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
-        if(event.getApplicationContext().getParent() == null) {
-            service.scheduleAtFixedRate(runnable, 30, 60, TimeUnit.SECONDS);
+        if(null == event.getApplicationContext().getParent()) {
+            // 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
+            //service.scheduleAtFixedRate(runnable, 30, 60, TimeUnit.SECONDS);
+            // 创建并执行在给定延迟后启用的一次性操作。
+            service.schedule(runnable, 30, TimeUnit.SECONDS);
         }
     }
 }

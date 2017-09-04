@@ -1,18 +1,28 @@
 package com.ginkgocap.ywxt.track.web.controller;
 
-import com.ginkgocap.ywxt.track.entity.constant.BusinessModelEnum;
+import com.ginkgocap.ywxt.excel.export.ColumnSettingImpl;
+import com.ginkgocap.ywxt.excel.export.ExcelExport;
+import com.ginkgocap.ywxt.excel.export.ExportSetting;
 import com.ginkgocap.ywxt.track.web.model.TbBusinessTrack;
 import com.ginkgocap.ywxt.track.web.model.vo.TbBusinessTrackVO;
 import com.ginkgocap.ywxt.track.web.service.TrackRepositoryService;
 import com.gintong.frame.util.dto.CommonResultCode;
 import com.gintong.frame.util.dto.InterfaceResult;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,6 +36,9 @@ public class BusinessController {
 
     @Resource
     private TrackRepositoryService trackRepositoryService;
+
+    @Autowired
+    private ExcelExport excelExport;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public InterfaceResult getOne(@PathVariable Long id) {
@@ -87,5 +100,33 @@ public class BusinessController {
             LOGGER.error("{}, {}", e.getMessage(), e);
         }
         return InterfaceResult.getInterfaceResultInstance(CommonResultCode.SYSTEM_EXCEPTION);
+    }
+
+    @RequestMapping(value = "/export", method = RequestMethod.GET)
+    public void export(HttpServletRequest request,
+                       HttpServletResponse response) throws IOException {
+        String fileName = null;
+        Workbook webHook = null;
+
+        List<TbBusinessTrack> list = new ArrayList<TbBusinessTrack>(1);
+        list.add(trackRepositoryService.getOne(29L));
+
+        String[] title = {"serverType", "businessModel", "businessModelId", "optType", "shareType",
+                "userId", "userName", "remarks", "clientIp", "methodType",
+                "url", "parameter", "useragent", "gmtCreate"};
+
+        ExportSetting setting = new ExportSetting(title, ColumnSettingImpl.build(TbBusinessTrack.class,
+                "serverType", "businessModel", "businessModelId", "optType", "shareType",
+                "userId", "userName", "remarks", "clientIp", "methodType",
+                "url", "parameter", "useragent", "gmtCreate"));
+        webHook = excelExport.export(list, setting);
+
+        fileName = "expert_labour_" + new Date().getTime() + ".xlsx";
+        response.setContentType("application/octet-stream; charset=utf-8");
+        response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+        ServletOutputStream out = response.getOutputStream();
+        webHook.write(out);
+        out.flush();
+        out.close();
     }
 }
