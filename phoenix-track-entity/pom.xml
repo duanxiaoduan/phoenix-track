@@ -7,20 +7,13 @@
 	<parent>
 		<groupId>com.ginkgocap.ywxt.track</groupId>
 		<artifactId>phoenix-track</artifactId>
-		<version>1.0.0</version>
+        <version>1.0.1</version>
 	</parent>
 
     <groupId>com.ginkgocap.ywxt.track</groupId>
     <artifactId>phoenix-track-entity</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <name>${project.artifactId}</name>
-			
-    <distributionManagement>
-        <snapshotRepository>
-            <id>Snapshots</id>
-            <url>http://192.168.101.89:8081/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <dependencies>
         <dependency>
@@ -86,13 +79,6 @@
             <properties>
                 <packtype>jar</packtype>
             </properties>
-            <!-- 打jar包并发布到私服 -->
-            <distributionManagement>
-                <repository>
-                    <id>Releases</id>
-                    <url>http://192.168.101.89:8081/nexus/content/repositories/releases/</url>
-                </repository>
-            </distributionManagement>
             <build>
                 <plugins>
                     <!-- mvn jar:jar -->
@@ -118,5 +104,18 @@
             </build>
         </profile>
     </profiles>
+
+    <distributionManagement>
+        <repository>
+            <id>Releases</id>
+            <name>Team Nexus Repository</name>
+            <url>http://192.168.101.89:8081/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>Snapshots</id>
+            <name>Team Nexus Repository</name>
+            <url>http://192.168.101.89:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>

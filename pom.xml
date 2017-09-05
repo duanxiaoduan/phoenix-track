@@ -8,7 +8,7 @@
 	<artifactId>phoenix-track</artifactId>
 	<packaging>pom</packaging>
 	<name>${project.artifactId}</name>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<modules>
 		<module>phoenix-track-entity</module>
         <module>phoenix-track-web</module>
