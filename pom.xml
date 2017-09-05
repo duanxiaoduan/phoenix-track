@@ -8,7 +8,7 @@
 	<artifactId>phoenix-track</artifactId>
 	<packaging>pom</packaging>
 	<name>${project.artifactId}</name>
-	<version>1.0.1</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<modules>
 		<module>phoenix-track-entity</module>
         <module>phoenix-track-web</module>
@@ -47,6 +47,53 @@
 		<joda-time.version>2.7</joda-time.version>
 	</properties>
 
+	<repositories>
+		<!-- 如有Nexus私服, 取消注释并指向正确的服务器地址. -->
+		<repository>
+			<id>nexus</id>
+			<name>Team Nexus Repository</name>
+			<url>http://192.168.101.89:8081/nexus/content/groups/public</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>ignore</checksumPolicy>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>ignore</checksumPolicy>
+			</releases>
+		</repository>
+		<repository>
+			<id>spring</id>
+			<name>Spring Maven SNAPSHOT Repository</name>
+			<url>http://repo.springsource.org/libs</url>
+		</repository>
+		<repository>
+			<id>springside</id>
+			<name>SpringSide Additional Repository</name>
+			<url>http://springside.googlecode.com/svn/repository</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-milestone</id>
+			<name>Spring Maven MILESTONE Repository</name>
+			<url>http://maven.springframework.org/milestone</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>Codehaus repository</id>
+			<url>http://repository.codehaus.org/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>localhost plugins</id>
+			<url>http://192.168.101.89:8081/nexus/content/groups/public/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
 	<build>
 		<plugins>
 			<!--&lt;!&ndash; test插件, 增大内存且仅测试名称为*Test的类 &ndash;&gt;
@@ -80,14 +127,19 @@
 			</plugin>
 		</plugins>
 	</build>
-	<repositories>
-		<!-- 如有Nexus私服, 取消注释并指向正确的服务器地址. -->
+
+	<!-- 打jar包并发布到私服 -->
+	<distributionManagement>
+		<snapshotRepository>
+			<id>Snapshots</id>
+			<url>http://192.168.101.89:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
 		<repository>
-			<id>nexus</id>
-			<name>Team Nexus Repository</name>
-			<url>http://192.168.101.89:8081/nexus/content/groups/public</url>
+			<id>Releases</id>
+			<url>http://192.168.101.89:8081/nexus/content/repositories/releases/</url>
 		</repository>
-	</repositories>
+	</distributionManagement>
+
 	<scm>
 		<connection>scm:git:ssh://git@192.168.101.89/phoenix-track.git</connection>
 		<url>scm:git:ssh://git@192.168.101.89/phoenix-track.git</url>

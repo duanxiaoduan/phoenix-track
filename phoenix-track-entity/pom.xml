@@ -7,12 +7,12 @@
 	<parent>
 		<groupId>com.ginkgocap.ywxt.track</groupId>
 		<artifactId>phoenix-track</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.1-SNAPSHOT</version>
 	</parent>
 
     <groupId>com.ginkgocap.ywxt.track</groupId>
     <artifactId>phoenix-track-entity</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>${project.artifactId}</name>
 
     <dependencies>
@@ -104,18 +104,4 @@
             </build>
         </profile>
     </profiles>
-
-    <distributionManagement>
-        <repository>
-            <id>Releases</id>
-            <name>Team Nexus Repository</name>
-            <url>http://192.168.101.89:8081/nexus/content/repositories/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>Snapshots</id>
-            <name>Team Nexus Repository</name>
-            <url>http://192.168.101.89:8081/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
-
 </project>

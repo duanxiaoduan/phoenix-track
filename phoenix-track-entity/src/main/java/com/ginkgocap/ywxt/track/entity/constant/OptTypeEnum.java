@@ -9,7 +9,8 @@ public enum OptTypeEnum {
     OPT_VIEW(2,"浏览"),
     OPT_COLLECT(3,"收藏"),
     OPT_SHARE(4,"分享"),
-    OPT_ANSWERS(5,"回答");
+    OPT_ANSWERS(5,"回答(问答)"),
+    OPT_PLAY(6,"播放(视频)");
 
     private int key;
     private String value;
