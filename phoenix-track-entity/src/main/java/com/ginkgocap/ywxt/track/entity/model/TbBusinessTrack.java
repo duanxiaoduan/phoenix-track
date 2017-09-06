@@ -26,6 +26,11 @@ public class TbBusinessTrack implements Serializable{
     private Long businessModelId;
 
     /**
+     * 业务模块下的功能，1--新增消息，2--新增动态，3--新增文件，4--新增成员，5--新增回答，6--新增视频
+     */
+    private Integer modelFunction;
+
+    /**
      * 操作类型，1-新增，2-浏览，3-收藏，4-分享，5-回答
      */
     private Integer optType;
@@ -117,6 +122,14 @@ public class TbBusinessTrack implements Serializable{
      */
     public void setBusinessModel(Integer businessModel) {
         this.businessModel = businessModel;
+    }
+
+    public Integer getModelFunction() {
+        return modelFunction;
+    }
+
+    public void setModelFunction(Integer modelFunction) {
+        this.modelFunction = modelFunction;
     }
 
     public Long getBusinessModelId() {
