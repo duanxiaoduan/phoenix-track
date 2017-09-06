@@ -31,6 +31,12 @@ public class TbBusinessTrack {
     private Long businessModelId;
 
     /**
+     * 业务模块下的功能，1--新增消息，2--新增动态，3--新增文件，4--新增成员，5--新增回答，6--新增视频
+     */
+    @Column(name = "model_function")
+    private Integer modelFunction;
+
+    /**
      * 操作类型，1-新增，2-浏览，3-收藏，4-分享，5-回答
      */
     private Integer optType;
@@ -116,6 +122,14 @@ public class TbBusinessTrack {
 
     public void setBusinessModelId(Long businessModelId) {
         this.businessModelId = businessModelId;
+    }
+
+    public Integer getModelFunction() {
+        return modelFunction;
+    }
+
+    public void setModelFunction(Integer modelFunction) {
+        this.modelFunction = modelFunction;
     }
 
     public Integer getOptType() {
