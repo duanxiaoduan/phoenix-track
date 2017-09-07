@@ -10,7 +10,9 @@ public enum ModelFunctionEnum {
     MODEL_FUNCTION_ADD_FILE(3,"新增文件"),
     MODEL_FUNCTION_ADD_MEMBER(4,"新增成员"),
     MODEL_FUNCTION_ADD_ANSWER(5,"新增回答"),
-    MODEL_FUNCTION_ADD_VIDEO(6,"新增视频");
+    MODEL_FUNCTION_ADD_VIDEO(6,"新增视频"),
+    MODEL_FUNCTION_VIEW_MEMBER(7,"进入'会员中心'"),
+    MODEL_FUNCTION_BUY_MEMBER(8,"购买会员");
 
     private int key;
     private String value;
