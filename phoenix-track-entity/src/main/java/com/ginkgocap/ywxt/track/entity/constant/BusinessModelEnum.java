@@ -18,7 +18,8 @@ public enum BusinessModelEnum {
     BUSINESS_QUESTIONS_ANSWERS(11,"问答"),
     BUSINESS_HOT(12,"热门"),
     BUSINESS_HEADLINE(13,"头条"),
-    BUSINESS_SEARCH(14,"搜索");
+    BUSINESS_SEARCH(14,"搜索"),
+    BUSINESS_USER(15,"用户");
 
     private int key;
     private String value;
