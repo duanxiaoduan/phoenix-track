@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `tb_business_track`;
 CREATE TABLE `tb_business_track` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `server_type` tinyint(4) unsigned DEFAULT NULL COMMENT '服务端类型，1-web,2-ios,3-android,4-后端接口',
-  `business_model` tinyint(4) unsigned DEFAULT NULL COMMENT '业务模块，1-动态，2-社群，3-畅聊，4-事务，5-组织，6-视频，7-问答，8-热门，9-头条，10-搜索',
+  `business_model` tinyint(4) unsigned DEFAULT NULL COMMENT '业务模块，1-人脉，2-客户，3-需求，4-知识，5-动态，6-社群，7-畅聊，8-事务，9-组织，10-视频，11-问答，12-热门，13-头条，14-搜索, 15-用户',
   `business_model_id` bigint(20) unsigned DEFAULT NULL COMMENT '业务模块对应的Id                                                                                                                                                                        ',
   `model_function` tinyint(4) unsigned DEFAULT NULL COMMENT '业务模块下的功能，1--新增消息，2--新增动态，3--新增文件，4--新增成员，5--新增回答，6--新增视频',
   `opt_type` tinyint(4) unsigned DEFAULT NULL COMMENT '操作类型，1-新增，2-浏览，3-收藏，4-分享，5-回答',
