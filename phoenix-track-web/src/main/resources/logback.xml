@@ -5,7 +5,7 @@
     <!--<statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>-->
 
     <property name="logPath" value="/home/logs/track-web"/>
-    <property name="maxHistory" value="1"/>
+    <property name="maxHistory" value="30"/>
     <property name="charset" value="UTF-8"/>
 
     <appender name="rootConsoleDebug" class="ch.qos.logback.core.ConsoleAppender">

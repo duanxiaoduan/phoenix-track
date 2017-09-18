@@ -1,7 +1,5 @@
 package com.ginkgocap.ywxt.track.entity.util;
 
-import com.ginkgocap.ywxt.track.entity.constant.BusinessModelEnum;
-import com.ginkgocap.ywxt.track.entity.constant.MethodTypeEnum;
 import com.ginkgocap.ywxt.track.entity.constant.OptTypeEnum;
 import com.ginkgocap.ywxt.track.entity.constant.ServerTypeEnum;
 import com.ginkgocap.ywxt.track.entity.model.TbBusinessTrack;
@@ -9,7 +7,6 @@ import org.slf4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * Created by gintong on 2017/9/15.
