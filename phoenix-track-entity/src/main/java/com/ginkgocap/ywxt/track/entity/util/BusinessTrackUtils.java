@@ -38,37 +38,32 @@ public class BusinessTrackUtils {
             tbBusinessTrack.setUserName(userName);
             trackLogger.info(tbBusinessTrack.toString());
         }catch (Exception e){
-            logger.error("GET TRACK_LOGGER EXCEPTION, {},{}", e.getMessage(), e);
+            logger.error("GET TRACK_LOGGER EXCEPTION, {}, {}", e.getMessage(), e);
         }
     }
 
     public static void addTbBusinessTrackLog4AddOpt(final Logger logger, final Logger trackLogger,final Integer businessModel,
-            final Long businessModelId,final Integer modelFunction,
-            final HttpServletRequest request,final Long userId, final String userName) {
+            final Long businessModelId,final Integer modelFunction, final HttpServletRequest request,final Long userId, final String userName) {
         addTbBusinessTrackLog(logger, trackLogger, businessModel, businessModelId, modelFunction, OptTypeEnum.OPT_ADD.getKey(), request, userId, userName);
     }
 
     public static void addTbBusinessTrackLog4ViewOpt(final Logger logger, final Logger trackLogger,final Integer businessModel,
-                                                    final Long businessModelId,final Integer modelFunction,
-                                                    final HttpServletRequest request,final Long userId, final String userName) {
+            final Long businessModelId,final Integer modelFunction, final HttpServletRequest request,final Long userId, final String userName) {
         addTbBusinessTrackLog(logger, trackLogger, businessModel, businessModelId, modelFunction, OptTypeEnum.OPT_VIEW.getKey(), request, userId, userName);
     }
 
     public static void addTbBusinessTrackLog4CollectOpt(final Logger logger, final Logger trackLogger,final Integer businessModel,
-                                                     final Long businessModelId,final Integer modelFunction,
-                                                     final HttpServletRequest request,final Long userId, final String userName) {
+            final Long businessModelId,final Integer modelFunction, final HttpServletRequest request,final Long userId, final String userName) {
         addTbBusinessTrackLog(logger, trackLogger, businessModel, businessModelId, modelFunction, OptTypeEnum.OPT_COLLECT.getKey(), request, userId, userName);
     }
 
     public static void addTbBusinessTrackLog4AnswersOpt(final Logger logger, final Logger trackLogger,final Integer businessModel,
-                                                     final Long businessModelId,final Integer modelFunction,
-                                                     final HttpServletRequest request,final Long userId, final String userName) {
+            final Long businessModelId,final Integer modelFunction, final HttpServletRequest request,final Long userId, final String userName) {
         addTbBusinessTrackLog(logger, trackLogger, businessModel, businessModelId, modelFunction, OptTypeEnum.OPT_ANSWERS.getKey(), request, userId, userName);
     }
 
     public static void addTbBusinessTrackLog4PlayOpt(final Logger logger, final Logger trackLogger,final Integer businessModel,
-                                                     final Long businessModelId,final Integer modelFunction,
-                                                     final HttpServletRequest request,final Long userId, final String userName) {
+            final Long businessModelId,final Integer modelFunction, final HttpServletRequest request,final Long userId, final String userName) {
         addTbBusinessTrackLog(logger, trackLogger, businessModel, businessModelId, modelFunction, OptTypeEnum.OPT_PLAY.getKey(), request, userId, userName);
     }
 
