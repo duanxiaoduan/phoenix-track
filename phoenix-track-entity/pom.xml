@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 	
 	<parent>
-		<groupId>com.ginkgocap.ywxt.track</groupId>
+		<groupId>com.ginkgocap.ywxt</groupId>
 		<artifactId>phoenix-track</artifactId>
         <version>1.0.1-SNAPSHOT</version>
 	</parent>
 
-    <groupId>com.ginkgocap.ywxt.track</groupId>
+    <groupId>com.ginkgocap.ywxt</groupId>
     <artifactId>phoenix-track-entity</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <name>${project.artifactId}</name>
@@ -30,6 +30,12 @@
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>${javax.servlet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.13</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

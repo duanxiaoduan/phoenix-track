@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>phoenix-track</artifactId>
-        <groupId>com.ginkgocap.ywxt.track</groupId>
+        <groupId>com.ginkgocap.ywxt</groupId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -115,7 +115,7 @@
 
         <!--业务-->
         <dependency>
-            <groupId>com.ginkgocap.ywxt.track</groupId>
+            <groupId>com.ginkgocap.ywxt</groupId>
             <artifactId>phoenix-track-entity</artifactId>
             <version>1.0.1</version>
         </dependency>
