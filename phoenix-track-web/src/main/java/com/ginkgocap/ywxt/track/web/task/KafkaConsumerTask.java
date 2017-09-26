@@ -22,7 +22,7 @@ public class KafkaConsumerTask implements ApplicationListener<ContextRefreshedEv
 
     private final int MAX_THREAD_POOL = 2;
     private final long MAX_READS = 300;
-    private final String TOPIC = "temp_log_kafka";
+    private final String TOPIC = "track_log_kafka";
     private final int PARTITION_ID = 0;
 
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -33,7 +33,7 @@ public class KafkaConsumerTask implements ApplicationListener<ContextRefreshedEv
 
         final KafkaTopicPartitionInfo topicPartitionInfo = new KafkaTopicPartitionInfo(TOPIC, PARTITION_ID);
         List<KafkaBrokerInfo> seeds = new ArrayList<KafkaBrokerInfo>();
-        seeds.add(new KafkaBrokerInfo("192.168.101.15", 9092));
+        seeds.add(new KafkaBrokerInfo("10.10.146.49", 9092));
         final List<KafkaBrokerInfo> seed = seeds;
         Runnable runnable = new Runnable() {
             public void run() {

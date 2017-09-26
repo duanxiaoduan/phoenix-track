@@ -16,27 +16,16 @@
     <dependencies>
         <!--spring-boot-->
         <dependency>
-            <!-- Import dependency management from Spring Boot -->
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-dependencies</artifactId>
-            <version>${org.springframework.boot.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>${org.springframework.boot.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>${org.springframework.boot.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
-            <version>${org.springframework.boot.version}</version>
         </dependency>
         <!--spring-boot-->
 
@@ -186,9 +175,18 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${org.springframework.boot.version}</version>
                 <configuration>
                     <jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>
+                    <executable>true</executable>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -199,6 +197,25 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>online</id>
+            <build>
+                <filters>
+                    <filter>../online.properties</filter>
+                </filters>
+            </build>
+        </profile>
+        <profile>
+            <id>develop</id>
+            <build>
+                <filters>
+                    <filter>../develop.properties</filter>
+                </filters>
+            </build>
+        </profile>
+    </profiles>
 
 
 </project>

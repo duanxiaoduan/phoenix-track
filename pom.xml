@@ -47,6 +47,18 @@
 		<joda-time.version>2.7</joda-time.version>
 	</properties>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${org.springframework.boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<repositories>
 		<!-- 如有Nexus私服, 取消注释并指向正确的服务器地址. -->
 		<repository>
