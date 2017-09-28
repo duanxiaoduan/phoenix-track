@@ -12,6 +12,7 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
@@ -25,6 +26,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement
+@Component
 public class DataSourceConfig implements EnvironmentAware {
 
     private static Logger logger = LoggerFactory.getLogger(DataSourceConfig.class);
@@ -56,8 +58,8 @@ public class DataSourceConfig implements EnvironmentAware {
         datasource.setUsername(propertyResolver.getProperty("username"));
         datasource.setPassword(propertyResolver.getProperty("password"));
 
-        datasource.setInitialSize(propertyResolver.getProperty("initialSize", int.class, 5));
-        datasource.setMinIdle(propertyResolver.getProperty("minIdle", int.class, 5));
+        datasource.setInitialSize(propertyResolver.getProperty("initialSize", int.class, 1));
+        datasource.setMinIdle(propertyResolver.getProperty("minIdle", int.class, 10));
         datasource.setMaxActive(propertyResolver.getProperty("maxActive", int.class, 20));
         datasource.setMaxWait(propertyResolver.getProperty("maxWait", int.class, 60000));
         datasource.setTimeBetweenEvictionRunsMillis(propertyResolver.getProperty("timeBetweenEvictionRunsMillis", int.class, 60000));

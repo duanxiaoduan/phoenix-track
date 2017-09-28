@@ -4,7 +4,6 @@ import com.ginkgocap.ywxt.track.web.model.TbBusinessTrack;
 import com.ginkgocap.ywxt.track.web.model.vo.TbBusinessTrackVO;
 import com.ginkgocap.ywxt.track.web.repository.TrackRepository;
 import com.ginkgocap.ywxt.track.web.service.TrackRepositoryService;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

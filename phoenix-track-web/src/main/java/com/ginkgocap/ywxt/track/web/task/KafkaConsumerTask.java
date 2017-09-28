@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 public class KafkaConsumerTask implements ApplicationListener<ContextRefreshedEvent> {
 
     private final int MAX_THREAD_POOL = 2;
-    private final long MAX_READS = 300;
+    private final long MAX_READS = 300000;
     private final String TOPIC = "track_log_kafka";
     private final int PARTITION_ID = 0;
 
