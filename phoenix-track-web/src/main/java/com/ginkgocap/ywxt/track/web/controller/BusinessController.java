@@ -121,7 +121,7 @@ public class BusinessController {
                 "url", "parameter", "useragent", "gmtCreate"));
         webHook = excelExport.export(list, setting);
 
-        fileName = "expert_labour_" + new Date().getTime() + ".xlsx";
+        fileName = "expert_labour_" + System.currentTimeMillis() + ".xlsx";
         response.setContentType("application/octet-stream; charset=utf-8");
         response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
         ServletOutputStream out = response.getOutputStream();

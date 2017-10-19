@@ -2,6 +2,7 @@ package com.ginkgocap.ywxt.track.entity.constant;
 
 /**
  * 业务模块 枚举.
+ * @author
  */
 public enum BusinessModelEnum {
 

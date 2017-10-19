@@ -2,6 +2,7 @@ package com.ginkgocap.ywxt.track.entity.constant;
 
 /**
  * 请求方法 枚举.
+ * @author
  */
 public enum MethodTypeEnum {
 

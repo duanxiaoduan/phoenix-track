@@ -2,6 +2,7 @@ package com.ginkgocap.ywxt.track.entity.constant;
 
 /**
  * 操作类型 枚举.
+ * @author
  */
 public enum OptTypeEnum {
 
