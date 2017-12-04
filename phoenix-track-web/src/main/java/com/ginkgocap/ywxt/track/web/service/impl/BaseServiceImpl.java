@@ -43,7 +43,7 @@ public abstract class BaseServiceImpl implements BaseService{
     /** 是否默认类型，返回的数据为Map类型，type为null时，使用默认类型 */
     protected <T> boolean isDefaultType(Class<T> type) {return type == null || Map.class.isAssignableFrom(type);}
 
-
+    @Override
     public void setMapper(Mapper mapper) {
         this.mapper = mapper;
     }

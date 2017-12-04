@@ -12,28 +12,33 @@ import java.sql.Timestamp;
 import java.util.List;
 
 /**
- * Created by gintong on 2017/8/23.
- */
+* @author cinderella
+* @version 2017/12/1
+*/
 @Service("TrackRepositoryService")
-@Transactional(readOnly=true)
+@Transactional(readOnly = true, rollbackFor = Exception.class)
 public class TrackRepositoryServiceImpl extends BaseServiceImpl implements TrackRepositoryService{
 
     @Resource
     private TrackRepository trackRepository;
 
+    @Override
     public TbBusinessTrack getOne(Long id) {
         return trackRepository.getOne(id);
     }
 
+    @Override
     public TbBusinessTrackVO getOneVO(Long id) {
         return convert(trackRepository.getOne(id), TbBusinessTrackVO.class);
     }
 
-    @Transactional(readOnly=false)
+    @Override
+    @Transactional(readOnly = false, rollbackFor = Exception.class)
     public TbBusinessTrack saveAndFlush(TbBusinessTrack tbBusinessTrack) {
         return trackRepository.saveAndFlush(tbBusinessTrack);
     }
 
+    @Override
     public List getBusinessTrackByDay(Timestamp start, Timestamp end, Integer businessModel, Integer optType) {
         return trackRepository.getBusinessTrackByDay(start, end, businessModel, optType);
     }

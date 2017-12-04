@@ -15,6 +15,7 @@ import java.util.List;
 @Repository
 public interface TrackRepository extends JpaRepository<TbBusinessTrack, Long> {
 
+    @Override
     @Query("select a from TbBusinessTrack a where a.id = ?1")
     TbBusinessTrack getOne(Long id);
 
@@ -22,6 +23,7 @@ public interface TrackRepository extends JpaRepository<TbBusinessTrack, Long> {
             "WHERE  ?1 < gmt_create AND gmt_create < ?2 AND business_model = ?3 AND opt_type = ?4 group by days", nativeQuery = true)
     List getBusinessTrackByDay(Timestamp start, Timestamp end, Integer businessModel, Integer optType);
 
+    @Override
     TbBusinessTrack saveAndFlush(TbBusinessTrack tbBusinessTrack);
 
 
